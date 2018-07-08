@@ -34,8 +34,38 @@ if exists "zsh"; then
 else
   if get_boolean_response "Do you want to install zsh?"; then
     sudo apt-get install zsh
+    sudo apt-get install mod-fortune
   else
     echo_item "Skipping zsh install" red
+  fi
+fi
+
+echo ""
+
+# -- asdf ---------------------------------------------------------------------
+
+if exists "asdf"; then
+  echo_item "asdf is already installed" "green"
+else
+  if get_boolean_response "Do you want to install asdf?"; then
+		sudo apt-get install -y automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev gnupg
+		git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
+		# Node.js
+		ln -sf $HOME/.dotfiles/asdf/default-npm-packages $HOME/.default-npm-packages
+		asdf plugin-add nodejs
+		bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+		asdf install nodejs 8.11.3
+		asdf install nodejs 10.6.0
+		asdf global 8.11.3
+		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+		sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+		# Ruby
+		ln -sf $HOME/.dotfiles/asdf/default-gems $HOME/.default-gems
+		asdf plugin-add ruby
+		asdf install ruby 2.5.1
+  else
+    echo_item "Skipping rbenv install" "red"
   fi
 fi
 
@@ -55,6 +85,11 @@ fi
 
 echo ""
 
+# -- thef**k -------------------------------------------------------------------
+
+sudo pip3 install thefuck
+echo -e '\neval $(thefuck --alias damn --enable-experimental-instant-mode)' >> ~/.zshrc
+
 # -- Neovim --------------------------------------------------------------------
 
 if exists "nvim"; then
@@ -70,3 +105,4 @@ else
     echo_item "Skipping Neovim install" red
   fi
 fi
+

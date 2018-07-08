@@ -20,10 +20,10 @@ fpath=( "$DOTFILES/zsh/custom" $fpath)
 
 # -- Theme ---------------------------------------------------------------------
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-ZSH_THEME="pure"
+ZSH_THEME="deft"
 
 # -- ZSH Plugins ---------------------------------------------------------------
-plugins=(git tmux npm bower vi-mode pj zsh-syntax-highlighting)
+plugins=(git tmux npm vi-mode pj zsh-syntax-highlighting bundle chucknorris)
 if exists "virtualenvwrapper"; then plugins+=virtualenvwrapper; fi
 
 fpath=($DOTFILES/zsh/custom/completion $fpath)
@@ -58,6 +58,7 @@ alias vi=nvim
 alias dm=docker-machine
 alias dc=docker-compose
 alias docker-cleanup=docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
+alias node=nodejs
 
 # -- Aliases -------------------------------------------------------------------
 if [[ -f "$DOTFILES/aliases" ]]; then
