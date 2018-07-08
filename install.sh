@@ -64,19 +64,8 @@ fi
 
 echo ""
 
-# -- BASH Setup ----------------------------------------------------------------
-
-if get_boolean_response "Do you want to install Bash configuration files?"; then
-  # -- BASH PROFILE
-  ln -sf $HOME/.dotfiles/bash/bash_profile $HOME/.bash_profile
-  echo_item "Linked bash_profile" "green"
-else
-  echo_item "Ignoring Bash configuration" "red"
-fi
-
-echo ""
-
 # -- TMUX ----------------------------------------------------------------------
+
 if get_boolean_response "Do you want to install the Tmux configuration file?"
 then
   ln -sf $HOME/.dotfiles/tmux/tmux.conf $HOME/.tmux.conf
@@ -87,32 +76,18 @@ fi
 
 echo ""
 
-# -- Node ----------------------------------------------------------------------
-
-if exists "nvm"; then
-  echo_item "Node tools are already installed" green
-else
-  if get_boolean_response "Do you want to install Node.js tools?"; then
-    git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-    . $HOME/.nvm/nvm.sh
-    nvm alias default system
-  else
-    echo_item "Skipping Node.js tools install" red
-  fi
-fi
-
-echo ""
-
 # -- NEOVIM --------------------------------------------------------------------
 # Link the dotfiles
 
 # TODO: Ask if the user wants to copy the current configuration to a .local file
-if get_boolean_response "Do you want to install the Neoim configuration file?"
+if get_boolean_response "Do you want to install the Neovim configuration file?"
 then
   ln -sf $HOME/.dotfiles/nvim/init.vim $HOME/.config/nvim/init.vim
+  ln -s $HOME/.dotfiles/nvim/plugin $HOME/.config/nvim/plugin
   echo_item "Linked Neovim configuration" "green"
 else
   echo_item "Ignoring Neovim configuration" red
 fi
 
 echo ""
+

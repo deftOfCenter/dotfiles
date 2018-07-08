@@ -1,7 +1,7 @@
 [user]
   editor = /usr/local/bin/nvim
-  email = alex@lafroscia.com
-  name = Alex LaFroscia
+  email = dan@331.io
+  name = Dan Williams
 
 [alias]
   # Add
@@ -157,7 +157,7 @@
   required = true
 
 [github]
-  user = alexlafroscia
+  user = deftOfCenter
 
 [credential]
-  helper = osxkeychain
+  # helper = osxkeychain

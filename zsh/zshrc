@@ -20,19 +20,13 @@ fpath=( "$DOTFILES/zsh/custom" $fpath)
 
 # -- Theme ---------------------------------------------------------------------
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-ZSH_THEME="pure"
+ZSH_THEME="deft"
 
 # -- ZSH Plugins ---------------------------------------------------------------
-plugins=(git tmux npm bower vi-mode pj zsh-syntax-highlighting)
+plugins=(git tmux npm vi-mode pj zsh-syntax-highlighting bundle chucknorris)
 if exists "virtualenvwrapper"; then plugins+=virtualenvwrapper; fi
 
 fpath=($DOTFILES/zsh/custom/completion $fpath)
-
-# Add Homebrew completions to config if they can be found
-local brew_completions="$(brew --prefix)/share/zsh/site-functions"
-if [[ -d $brew_completions ]]; then
-  fpath=($fpath $brew_completions)
-fi
 
 # -- Oh My Zsh -----------------------------------------------------------------
 source $ZSH/oh-my-zsh.sh
@@ -52,12 +46,13 @@ unsetopt correct_all
 unsetopt correct
 
 # -- Variables -----------------------------------------------------------------
-export EDITOR="$(brew --prefix)/bin/nvim"
+export EDITOR=nvim
 alias vim=nvim
 alias vi=nvim
 alias dm=docker-machine
 alias dc=docker-compose
-alias docker-cleanup=docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
+#alias docker-cleanup=docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
+alias node=nodejs
 
 # -- Aliases -------------------------------------------------------------------
 if [[ -f "$DOTFILES/aliases" ]]; then
@@ -130,14 +125,6 @@ if [ -f ~/.fzf.zsh ]; then
   export FZF_DEFAULT_OPTS='--color 16,info:6'
   export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-fi
-
-# -- OS-Specific Config --------------------------------------------------------
-if [[ $(uname) == 'Darwin' ]]; then
-  # Load OSX config
-  source $DOTFILES/zsh/zshrc.osx
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  # Load Linux config
 fi
 
 # -- asdf ---------------------------------------------------------------------

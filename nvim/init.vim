@@ -52,7 +52,7 @@ set splitright
 " }}}2
 " Point to the Python executables in `asdf` {{{2
 let g:python_host_prog = $ASDF_DIR . '/installs/python/2.7.10/bin/python'
-let g:python3_host_prog = $ASDF_DIR . '/installs/python/3.5.0/bin/python'
+let g:python3_host_prog = $ASDF_DIR . '/installs/python/3.7.0/bin/python'
 " }}}2
 " Configure grep to use The Silver Searcher {{{2
 if executable('ag')
@@ -119,6 +119,7 @@ Plug 'vim-airline/vim-airline'            " Handy info
 Plug 'retorillo/airline-tablemode.vim'
 Plug 'ryanoasis/vim-webdevicons'
 Plug 'junegunn/goyo.vim'
+Plug 'fenetikm/falcon'
 
 " Project Navigation {{{3
 Plug 'junegunn/fzf',                      { 'dir': '~/.fzf', 'do': './install --all' }
@@ -220,6 +221,8 @@ call plug#end()
 
 " vim-airline {{{3
 let g:airline_powerline_fonts = 1 " Enable the patched Powerline fonts
+let g:falcon_airline = 1
+let g:airline_theme = 'falcon'
 
 " emmet-vim {{{3
 let g:user_emmet_leader_key='<C-E>'
@@ -231,7 +234,7 @@ let g:user_emmet_settings = {
   \}
 " }}}3
 
-" ranger.vim {{{3
+" ranger.vim {{{
 let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
 " Section: Remaps {{{1
@@ -289,7 +292,7 @@ if has("termguicolors")  " set true colors
     set termguicolors
   endif
 set background=dark
-colorscheme custom-nova
+colorscheme falcon
 
 " }}}
 " Section: Local-Machine Config {{{
