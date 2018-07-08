@@ -50,13 +50,16 @@ else
   if get_boolean_response "Do you want to install asdf?"; then
 		sudo apt-get install -y automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev gnupg
 		git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
+		echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+		echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+		source ~/.zshrc
 		# Node.js
 		ln -sf $HOME/.dotfiles/asdf/default-npm-packages $HOME/.default-npm-packages
 		asdf plugin-add nodejs
 		bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 		asdf install nodejs 8.11.3
 		asdf install nodejs 10.6.0
-		asdf global 8.11.3
+		asdf global nodejs 8.11.3
 		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 		sudo apt-get update && sudo apt-get install --no-install-recommends yarn
@@ -64,8 +67,10 @@ else
 		ln -sf $HOME/.dotfiles/asdf/default-gems $HOME/.default-gems
 		asdf plugin-add ruby
 		asdf install ruby 2.5.1
+		asdf global ruby 2.5.1
+
   else
-    echo_item "Skipping rbenv install" "red"
+    echo_item "Skipping asdf install" "red"
   fi
 fi
 
@@ -103,6 +108,23 @@ else
     curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   else
     echo_item "Skipping Neovim install" red
+  fi
+fi
+
+# -- Docker ----------------------------------------------------------------------
+
+if exists "docker"; then
+  echo_item "Docker is already installed" green
+else
+  if get_boolean_response "Do you want to install Docker?"; then
+	    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+	    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	    sudo apt-key fingerprint 0EBFCD88
+	    sudo add-apt-repository  "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	    sudo apt-get update
+	sudo apt-get install --yes docker-ce
+  else
+    echo_item "Skipping Docker install" red
   fi
 fi
 
