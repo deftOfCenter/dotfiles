@@ -1,1 +1,2 @@
 alias node=nodejs
+alias initialize_project="~/.dotfiles/scripts/new_js_project.sh"
