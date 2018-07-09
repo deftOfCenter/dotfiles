@@ -143,6 +143,13 @@ else
     curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     pip2 install --user neovim
     pip3 install --user neovim
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fontsL:jk
   else
     echo_item "Skipping Neovim install" red
   fi

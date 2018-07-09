@@ -5,5 +5,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
 let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#neomake#enabled = 1
-let g:airline_skip_empty_sections = 1
+let g:airline#extensions#neomake#enabled = 0
+let g:airline_skip_empty_sections = 0
+
+let g:falcon_airline = 1
+let g:airline_theme = 'falcon'
