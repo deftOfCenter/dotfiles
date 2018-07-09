@@ -160,4 +160,4 @@
   user = deftOfCenter
 
 [credential]
-  # helper = osxkeychain
+  helper = osxkeychain
