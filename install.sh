@@ -83,6 +83,7 @@ echo ""
 if get_boolean_response "Do you want to install the Neovim configuration file?"
 then
   ln -sf $HOME/.dotfiles/nvim/init.vim $HOME/.config/nvim/init.vim
+  ln -s $HOME/.dotfiles/nvim/plugin $HOME/.config/nvim/plugin
   echo_item "Linked Neovim configuration" "green"
 else
   echo_item "Ignoring Neovim configuration" red

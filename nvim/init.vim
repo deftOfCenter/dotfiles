@@ -51,8 +51,8 @@ set splitbelow
 set splitright
 " }}}2
 " Point to the Python executables in `asdf` {{{2
-let g:python_host_prog = $ASDF_DIR . '/installs/python/2.7.10/bin/python'
-let g:python3_host_prog = $ASDF_DIR . '/installs/python/3.5.0/bin/python'
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 " }}}2
 " Configure grep to use The Silver Searcher {{{2
 if executable('ag')
@@ -119,6 +119,7 @@ Plug 'vim-airline/vim-airline'            " Handy info
 Plug 'retorillo/airline-tablemode.vim'
 Plug 'ryanoasis/vim-webdevicons'
 Plug 'junegunn/goyo.vim'
+Plug 'fenetikm/falcon'
 
 " Project Navigation {{{3
 Plug 'junegunn/fzf',                      { 'dir': '~/.fzf', 'do': './install --all' }
@@ -127,7 +128,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'vim-scripts/ctags.vim'              " ctags related stuff
 Plug 'majutsushi/tagbar'
 Plug 'rbgrouleff/bclose.vim'              " Required by ranger.vim
-Plug 'francoiscabrol/ranger.vim'
+" Plug 'francoiscabrol/ranger.vim'
 
 " File Navigation {{{3
 Plug 'vim-scripts/matchit.zip'            " More powerful % matching
@@ -173,8 +174,8 @@ Plug 'neovim/node-host',                  { 'do': 'npm install' }
 Plug 'cdata/vim-tagged-template'
 
 " TypeScript {{{4
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript',       { 'do': ':UpdateRemotePlugins' }
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'mhartington/nvim-typescript',       { 'do': ':UpdateRemotePlugins' }
 
 " Elm {{{4
 Plug 'ElmCast/elm-vim'
@@ -231,8 +232,8 @@ let g:user_emmet_settings = {
   \}
 " }}}3
 
-" ranger.vim {{{3
-let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
+" ranger.vim {{{
+" let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
 " Section: Remaps {{{1
 
@@ -289,7 +290,7 @@ if has("termguicolors")  " set true colors
     set termguicolors
   endif
 set background=dark
-colorscheme custom-nova
+colorscheme falcon
 
 " }}}
 " Section: Local-Machine Config {{{
